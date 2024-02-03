@@ -44,8 +44,10 @@ fun StudentColumn(student:StudentInfo,viewModel: AttendanceViewModel){
     val columName = "d$date"
     val query = SimpleSQLiteQuery("UPDATE student_table SET $columName = ? , present = ? WHERE id = ?",
         arrayOf(true,student.present+1,student.id))
+    val query2 = SimpleSQLiteQuery("UPDATE student_table SET $columName = ? , present = ? WHERE id = ?",
+        arrayOf(false,student.present-1,student.id))
     var selected by remember {
-        mutableStateOf("")
+        mutableStateOf("r")
     }
     Row (modifier = Modifier
         .fillMaxWidth()
@@ -86,6 +88,7 @@ fun StudentColumn(student:StudentInfo,viewModel: AttendanceViewModel){
                 )
                 .padding(2.dp).background(if (selected =="r") Color.Gray else Color.Transparent).clickable {
                     selected = "r"
+                    viewModel.giveAttendance(query2)
                 }) {
                 Box(
                     modifier = Modifier

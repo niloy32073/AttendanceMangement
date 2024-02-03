@@ -22,7 +22,7 @@ import java.time.LocalDate
 @Composable
 fun StudentAttendanceColumn(student: Student){
     val date:Int = LocalDate.now().dayOfMonth
-    Row(modifier = Modifier.fillMaxWidth(.9f), verticalAlignment = Alignment.CenterVertically) {
+    Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
         Text(text = "${student.roll.toString()} ${student.name}", modifier = Modifier.width(100.dp))
         LazyRow(){
             repeat(date) { count ->
